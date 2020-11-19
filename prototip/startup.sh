@@ -1,4 +1,4 @@
-echo "#! /bin/bash
+#! /bin/bash
 
 # /etc/init.d/startup.sh
 ### BEGIN INIT INFO
@@ -38,5 +38,5 @@ gpio mode 24 in
 gpio write 23 0
 
 # Fi
-echo "GPIO config set"" > startup2.sh
+echo "GPIO config set"
 
