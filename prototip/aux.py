@@ -8,6 +8,9 @@ import requests
 import json
 import gpiozero
 
+# Configuració
+import config
+
 # Definició de funcions.
 		
 def init():
