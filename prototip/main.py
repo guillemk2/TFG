@@ -9,7 +9,7 @@ import json
 import gpiozero
 
 # Configuració
-import config
+import cfg
 
 # Funcions auxiliars
 import aux
