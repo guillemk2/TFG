@@ -55,7 +55,7 @@ sensor2_vcc = gpiozero.OutputDevice(SENSOR2_VCC, active_high=True, initial_value
 def main_loop():
 
 	aux.init()
-	aux.poll_sensors()
+	#aux.poll_sensors()
 
 if __name__ == "__main__":
 	try:
