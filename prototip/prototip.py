@@ -14,6 +14,7 @@ POLL_FREQUENCY = 5
 POLL_TIME = 0.25
 IRRIGATION_TIME = 1
 
+# Valors d'humitat
 DRY = 0
 WET = 1
 
