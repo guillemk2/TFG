@@ -6,8 +6,15 @@ from signal import pause
 import threading
 import requests
 import json
-
 import gpiozero
+
+from functions import open_valve
+from functions import close_valve
+from functions import set_valves
+from functions import poll_sensors
+from functions import irrigate
+from functions import init
+from functions import post
 
 # Definició de constants
 POLL_FREQUENCY = 5
