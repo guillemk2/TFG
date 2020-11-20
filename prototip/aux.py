@@ -21,46 +21,45 @@ def init():
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
 
-	button1.when_pressed = open_valve
-	button1.when_released = close_valve
+	cfg.button1.when_pressed = open_valve
+	cfg.button1.when_released = close_valve
 
-	button2.when_pressed = open_valve
-	button2.when_released = close_valve
+	cfg.button2.when_pressed = open_valve
+	cfg.button2.when_released = close_valve
 
 	pause()
 
 def open_valve(btn):
 
-	global valve1_t0, valve2_t0, button1, button2, relay1, relay2
-
-	if(btn == button1 and relay1.value == 0):
-		relay1.on()
-		valve1_t0 = time()
+	if(btn == cfg.button1 and cfg.relay1.value == 0):
+		cfg.relay1.on()
+		cfg.valve1_t0 = time()
 		print("Electrovàlvula 1: Obertura.")
-	if(btn == button2 and relay2.value == 0):
-		relay2.on()
-		valve2_t0 = time()
+
+	if(btn == cfg.button2 and cfg.relay2.value == 0):
+		cfg.relay2.on()
+		cfg.valve2_t0 = time()
 		print("Electrovàlvula 2: Obertura.")
 		
 def close_valve(btn):
-	global valve1_t1, valve2_t1, button1, button2, relay1, relay2
-	if(btn == button1 and relay1.value == 1):
-		relay1.off()
-		valve1_t1 = time()
+	
+	if(btn == cfg.button1 and cfg.relay1.value == 1):
+		cfg.relay1.off()
+		cfg.valve1_t1 = time()
 		print("Electrovàlvula 1: Tancament. Temps de reg: ", round(valve1_t1-valve1_t0, 1), " segons\n")
-	if(btn == button2 and relay2.value == 1):
-		relay2.off()
-		valve2_t1 = time()
+	if(btn == cfg.button2 and cfg.relay2.value == 1):
+		cfg.relay2.off()
+		cfg.valve2_t1 = time()
 		print("Electrovàlvula 2: Tancament. Temps de reg: ", round(valve2_t1-valve2_t0, 1), " segons\n")
 
 def set_valves(status):
 
 	if status:
-		open_valve(button1)
-		open_valve(button2)
+		open_valve(cfg.button1)
+		open_valve(cfg.button2)
 	else:
-		close_valve(button1)
-		close_valve(button2)
+		close_valve(cfg.button1)
+		close_valve(cfg.button2)
 		
 def poll_sensors():
 
