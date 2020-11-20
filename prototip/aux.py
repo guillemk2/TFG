@@ -1,3 +1,13 @@
+#!/usr/bin/env python3
+
+import sys
+from time import time, ctime, sleep
+from signal import pause
+import threading
+import requests
+import json
+import gpiozero
+
 # Definició de funcions.
 def open_valve(btn):
 	global valve1_t0, valve2_t0

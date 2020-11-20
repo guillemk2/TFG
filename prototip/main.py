@@ -8,7 +8,7 @@ import requests
 import json
 import gpiozero
 
-# Fitxer de funcions auxiliars
+# Funcions auxiliars
 import aux
 
 # Definició de constants
