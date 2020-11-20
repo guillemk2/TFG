@@ -4,6 +4,8 @@ import sys
 from time import time, ctime, sleep
 from signal import pause
 import threading
+import requests
+import json
 
 import gpiozero
 
@@ -14,6 +16,9 @@ IRRIGATION_TIME = 1
 
 DRY = 0
 WET = 1
+
+url = 'http://192.168.1.134:8080'
+payload = {'date': time(), 'moisture': [0, 1]}
 
 # Situació dels pins per a cada component
 RELAY_1 = "BOARD11"
@@ -91,6 +96,8 @@ def poll_sensors():
 				
 		sensor1_vcc.off()
 		sensor2_vcc.off()
+
+		post()
 		
 		sleep(POLL_FREQUENCY)
 	
@@ -114,6 +121,10 @@ def init():
 
 	button2.when_pressed = open_valve
 	button2.when_released = close_valve
+
+def post():
+	r = requests.post(url, data=json.dumps(payload))
+	print(r.status_code, r.text)
 
 def main_loop():
 
