@@ -9,7 +9,7 @@ import json
 import gpiozero
 
 # Fitxer de funcions auxiliars
-import functions
+import aux
 
 # Definició de constants
 POLL_FREQUENCY = 5
@@ -54,8 +54,8 @@ sensor2_vcc = gpiozero.OutputDevice(SENSOR2_VCC, active_high=True, initial_value
 
 def main_loop():
 
-	init()
-	poll_sensors()
+	aux.init()
+	aux.poll_sensors()
 
 if __name__ == "__main__":
 	try:

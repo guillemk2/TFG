@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Definició de funcions.
 def open_valve(btn):
 	global valve1_t0, valve2_t0
