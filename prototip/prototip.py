@@ -19,7 +19,7 @@ DRY = 0
 WET = 1
 
 url = 'http://192.168.1.134:8080'
-payload = {'date': time(), 'moisture': [true, false]}
+payload = {'date': time(), 'moisture': [0, 1]}
 
 # Situació dels pins per a cada component
 RELAY_1 = "BOARD11"
