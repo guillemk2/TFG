@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from time import time
+from numpy import array
 import gpiozero
 
 # CONSTANTS
@@ -31,12 +32,13 @@ SENSOR0_VCC = "BOARD29"
 SENSOR1_VCC = "BOARD33"
 
 # Creació dels OBJECTES.
-relays = []
-relays.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False))
-relays.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
+relays_aux = []
+relays_aux.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False))
+relays_aux.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
+relays = array(relays_aux)
 
 print ("Valor del relé 0: ", relays[0].value())
-print (relays[0].value())
+print (relays[1].value())
 
 buttons[0] = gpiozero.Button(BUTTON_0)
 buttons[1] = gpiozero.Button(BUTTON_1)
