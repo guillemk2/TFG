@@ -35,6 +35,9 @@ relays = []
 relays.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False))
 relays.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
 
+print ("Valor del relé 0: ", relays[0].value())
+print (relays[0].value())
+
 buttons[0] = gpiozero.Button(BUTTON_0)
 buttons[1] = gpiozero.Button(BUTTON_1)
 
