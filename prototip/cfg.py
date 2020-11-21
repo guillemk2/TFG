@@ -38,7 +38,7 @@ relays.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=Fa
 relays = np.array(relays)
 
 buttons = []
-buttons.append(piozero.Button(BUTTON_0))
+buttons.append(gpiozero.Button(BUTTON_0))
 buttons.append(gpiozero.Button(BUTTON_1))
 buttons = np.array(buttons)
 
