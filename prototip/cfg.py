@@ -60,10 +60,10 @@ sensors_vcc = np.array(sensors_vcc)
 valves_t0 = []
 valves_t0.append(0) # Darrer instant que la vàlvula 0 ha estat oberta.
 valves_t0.append(0) # Darrer instant que la vàlvula 1 ha estat oberta.
-valves_t0 = np.array(valves_t0)
+valves_t0 = np.array(valves_t0, dtype='f')
 
 valves_t1 = []
 valves_t1.append(0) # Darrer instant que la vàlvula 0 ha estat tancada.
 valves_t1.append(0) # Darrer instant que la vàlvula 1 ha estat tancada.
-valves_t1 = np.array(valves_t1)
+valves_t1 = np.array(valves_t1, dtype='f')
 
