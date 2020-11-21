@@ -32,10 +32,10 @@ SENSOR0_VCC = "BOARD29"
 SENSOR1_VCC = "BOARD33"
 
 # Creació dels OBJECTES.
-relays_aux = []
-relays_aux.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False))
-relays_aux.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
-relays = np.array(relays_aux)
+relays = []
+relays.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False))
+relays.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
+relays = np.array(relays)
 
 print(relays.size)
 print(relays)
