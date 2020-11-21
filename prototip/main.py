@@ -8,8 +8,12 @@ import requests
 import json
 import gpiozero
 
-# Configuració
-import cfg
+# Constants
+from cfg import POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, DRY, WET, url, payload
+# Objectes
+from cfg import relays, buttons, sensors, sensors_vcc
+# Variables globals
+from cfg import valves_t0, valves_t1
 
 # Funcions auxiliars
 import aux

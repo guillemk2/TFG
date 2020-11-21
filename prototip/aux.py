@@ -8,8 +8,12 @@ import requests
 import json
 import gpiozero
 
-# Configuració
-import cfg
+# Constants
+from cfg import POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, DRY, WET, url, payload
+# Objectes
+from cfg import relays, buttons, sensors, sensors_vcc
+# Variables globals
+from cfg import valves_t0, valves_t1
 
 # Definició de funcions.
 		
@@ -21,62 +25,66 @@ def init():
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
 
-	cfg.button1.when_pressed = open_valve
-	cfg.button1.when_released = close_valve
+	buttons[0].when_pressed = open_valve1
+	buttons[0].when_released = close_valve1
 
-	cfg.button2.when_pressed = open_valve
-	cfg.button2.when_released = close_valve
-
+	buttons[1].when_pressed = open_valve2
+	buttons[1].when_released = close_valve2
 	pause()
 
-def open_valve(btn):
+def open_valve1():
 
-	if(btn == cfg.button1 and cfg.relay1.value == 0):
-		cfg.relay1.on()
-		cfg.valve1_t0 = time()
+	if(relays[0].value == 0):
+		relays[0].on()
+		valves_t0[0] = time()
 		print("Electrovàlvula 1: Obertura.")
 
-	if(btn == cfg.button2 and cfg.relay2.value == 0):
-		cfg.relay2.on()
-		cfg.valve2_t0 = time()
+def open_valve2():
+
+	if(relays[1].value == 0):
+		relays[1].on()
+		valves_t0[1] = time()
 		print("Electrovàlvula 2: Obertura.")
 		
-def close_valve(btn):
+def close_valve2():
 	
-	if(btn == cfg.button1 and cfg.relay1.value == 1):
-		cfg.relay1.off()
-		cfg.valve1_t1 = time()
-		print("Electrovàlvula 1: Tancament. Temps de reg: ", round(valve1_t1-valve1_t0, 1), " segons\n")
-	if(btn == cfg.button2 and cfg.relay2.value == 1):
-		cfg.relay2.off()
-		cfg.valve2_t1 = time()
-		print("Electrovàlvula 2: Tancament. Temps de reg: ", round(valve2_t1-valve2_t0, 1), " segons\n")
+	if(relays[0].value == 1):
+		relays[0].off()
+		valves_t1[0] = time()
+		print("Electrovàlvula 1: Tancament. Temps de reg: ", round(valves_t1[0]-valves_t0[0], 1), " segons\n")
+	
+def close_valve2():
+
+	if(relays[1].value == 1):
+		relays[1].off()
+		valves_t1[1] = time()
+		print("Electrovàlvula 2: Tancament. Temps de reg: ", round(valves_t1[1]-valves_t0[1], 1), " segons\n")
 
 def set_valves(status):
 
 	if status:
-		open_valve(cfg.button1)
-		open_valve(cfg.button2)
+		open_valve1()
+		open_valve2()
 	else:
-		close_valve(cfg.button1)
-		close_valve(cfg.button2)
+		close_valve1()
+		close_valve2()
 		
 def poll_sensors():
 
 	while 1:
-		sensor1_vcc.on()
-		sensor2_vcc.on()
+		sensors_vcc[0].on()
+		sensors_vcc[1].on()
 		
-		if (sensor1.value == DRY):
-			threading.Thread(target=irrigate, args=(button1,)).start()
+		if (sensors[0].value == DRY):
+			threading.Thread(target=irrigate, args=(buttons[0],)).start()
 			
-		if (sensor2.value == DRY):
-			threading.Thread(target=irrigate, args=(button2,)).start()
+		if (sensors[1].value == DRY):
+			threading.Thread(target=irrigate, args=(buttons[1],)).start()
 		
 		sleep(POLL_TIME)
 				
-		sensor1_vcc.off()
-		sensor2_vcc.off()
+		sensors_vcc[0].off()
+		sensors_vcc[1].off()
 
 		post()
 		
