@@ -25,7 +25,7 @@ def init():
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
 
-	for (i = 0; i < SYS_SIZE; i++)
+	for i in range(SYS_SIZE):
 		buttons[i].when_pressed = button_pressed
 		buttons[i].when_released = button_released
 
@@ -48,10 +48,10 @@ def close_valve(n):
 def set_valves(status):
 
 	if status:
-		for (i = 0; i < SYS_SIZE; i++)
+		for i in range(SYS_SIZE):
 			open_valve(i)
 	else:
-		for (i = 0; i < SYS_SIZE; i++)
+		for i in range(SYS_SIZE):
 			close_valve(i)
 		
 def button_pressed(btn):
