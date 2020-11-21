@@ -32,21 +32,18 @@ def init():
 	pause()
 
 def open_valve(n):
-
 	if(relays[n].value == 0):
 		relays[n].on()
 		valves_t0[n] = time()
 		print("Electrovàlvula ", n, ": Obertura.")
 
 def close_valve(n):
-
 	if(relays[n].value == 1):
 		relays[n].off()
 		valves_t1[n] = time()
 		print("Electrovàlvula ", n, ": Tancament. Temps de reg: ", round(valves_t1[n]-valves_t0[n], 1), " segons\n")
 
 def set_valves(status):
-
 	if status:
 		for i in range(SYS_SIZE):
 			open_valve(i)
@@ -55,10 +52,14 @@ def set_valves(status):
 			close_valve(i)
 		
 def button_pressed(btn):
-	print(btn)
+	for i in range(SYS_SIZE):
+		if (buttons[i] == btn):
+			open_valve(i)
 
 def button_released(btn):
-	print("Released")
+	for i in range(SYS_SIZE):
+		if (buttons[i] == btn):
+			close_valve(i)
 
 def poll_sensors():
 
