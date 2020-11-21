@@ -6,6 +6,9 @@ import gpiozero
 
 # CONSTANTS
 
+# Número de testos
+SYS_SIZE = 2
+
 # Duració dels events
 POLL_FREQUENCY = 5
 POLL_TIME = 0.25
@@ -63,3 +66,4 @@ valves_t1 = []
 valves_t1.append(0) # Darrer instant que la vàlvula 0 ha estat tancada.
 valves_t1.append(0) # Darrer instant que la vàlvula 1 ha estat tancada.
 valves_t1 = np.array(valves_t1)
+

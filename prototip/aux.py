@@ -9,7 +9,7 @@ import json
 import gpiozero
 
 # Constants
-from cfg import POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, DRY, WET, url, payload
+from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, DRY, WET, url, payload
 # Objectes
 from cfg import relays, buttons, sensors, sensors_vcc
 # Variables globals
@@ -25,50 +25,41 @@ def init():
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
 
-	buttons[0].when_pressed = open_valve0
-	buttons[0].when_released = close_valve0
+	for (i = 0; i < SYS_SIZE; i++)
+		buttons[i].when_pressed = button_pressed
+		buttons[i].when_released = button_released
 
-	buttons[1].when_pressed = open_valve1
-	buttons[1].when_released = close_valve1
 	pause()
 
-def open_valve0():
+def open_valve(n):
 
-	if(relays[0].value == 0):
-		relays[0].on()
-		valves_t0[0] = time()
-		print("Electrovàlvula 0: Obertura.")
+	if(relays[n].value == 0):
+		relays[n].on()
+		valves_t0[n] = time()
+		print("Electrovàlvula ", n, ": Obertura.")
 
-def open_valve1():
+def close_valve(n):
 
-	if(relays[1].value == 0):
-		relays[1].on()
-		valves_t0[1] = time()
-		print("Electrovàlvula 1: Obertura.")
-		
-def close_valve0():
-	
-	if(relays[0].value == 1):
-		relays[0].off()
-		valves_t1[0] = time()
-		print("Electrovàlvula 0: Tancament. Temps de reg: ", round(valves_t1[0]-valves_t0[0], 1), " segons\n")
-	
-def close_valve1():
-
-	if(relays[1].value == 1):
-		relays[1].off()
-		valves_t1[1] = time()
-		print("Electrovàlvula 1: Tancament. Temps de reg: ", round(valves_t1[1]-valves_t0[1], 1), " segons\n")
+	if(relays[n].value == 1):
+		relays[n].off()
+		valves_t1[n] = time()
+		print("Electrovàlvula ", n, ": Tancament. Temps de reg: ", round(valves_t1[n]-valves_t0[n], 1), " segons\n")
 
 def set_valves(status):
 
 	if status:
-		open_valve0()
-		open_valve1()
+		for (i = 0; i < SYS_SIZE; i++)
+			open_valve(i)
 	else:
-		close_valve0()
-		close_valve1()
+		for (i = 0; i < SYS_SIZE; i++)
+			close_valve(i)
 		
+def button_pressed(btn):
+	print(btn)
+
+def button_released(btn):
+	print("Released")
+
 def poll_sensors():
 
 	while 1:
