@@ -25,49 +25,49 @@ def init():
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
 
-	buttons[0].when_pressed = open_valve1
-	buttons[0].when_released = close_valve1
+	buttons[0].when_pressed = open_valve0
+	buttons[0].when_released = close_valve0
 
-	buttons[1].when_pressed = open_valve2
-	buttons[1].when_released = close_valve2
+	buttons[1].when_pressed = open_valve1
+	buttons[1].when_released = close_valve1
 	pause()
 
-def open_valve1():
+def open_valve0():
 
 	if(relays[0].value == 0):
 		relays[0].on()
 		valves_t0[0] = time()
-		print("Electrovàlvula 1: Obertura.")
+		print("Electrovàlvula 0: Obertura.")
 
-def open_valve2():
+def open_valve1():
 
 	if(relays[1].value == 0):
 		relays[1].on()
 		valves_t0[1] = time()
-		print("Electrovàlvula 2: Obertura.")
+		print("Electrovàlvula 1: Obertura.")
 		
-def close_valve2():
+def close_valve0():
 	
 	if(relays[0].value == 1):
 		relays[0].off()
 		valves_t1[0] = time()
-		print("Electrovàlvula 1: Tancament. Temps de reg: ", round(valves_t1[0]-valves_t0[0], 1), " segons\n")
+		print("Electrovàlvula 0: Tancament. Temps de reg: ", round(valves_t1[0]-valves_t0[0], 1), " segons\n")
 	
-def close_valve2():
+def close_valve1():
 
 	if(relays[1].value == 1):
 		relays[1].off()
 		valves_t1[1] = time()
-		print("Electrovàlvula 2: Tancament. Temps de reg: ", round(valves_t1[1]-valves_t0[1], 1), " segons\n")
+		print("Electrovàlvula 1: Tancament. Temps de reg: ", round(valves_t1[1]-valves_t0[1], 1), " segons\n")
 
 def set_valves(status):
 
 	if status:
+		open_valve0()
 		open_valve1()
-		open_valve2()
 	else:
+		close_valve0()
 		close_valve1()
-		close_valve2()
 		
 def poll_sensors():
 

@@ -37,22 +37,29 @@ relays.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=Fa
 relays.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
 relays = np.array(relays)
 
-print(relays.size)
-print(relays)
+buttons = []
+buttons.append(piozero.Button(BUTTON_0))
+buttons.append(gpiozero.Button(BUTTON_1))
+buttons = np.array(buttons)
 
-print("Valor del relé 0: ", relays[0].value)
-print(relays[1].value)
+sensors = []
+sensors.append(gpiozero.DigitalInputDevice(SENSOR0, pull_up=None, active_state=False))
+sensors.append(gpiozero.DigitalInputDevice(SENSOR1, pull_up=None, active_state=False))
+sensors = np.array(sensors)
 
-buttons[0] = gpiozero.Button(BUTTON_0)
-buttons[1] = gpiozero.Button(BUTTON_1)
+sensors_vcc = []
+sensors_vcc.append(gpiozero.OutputDevice(SENSOR0_VCC, active_high=True, initial_value=False))
+sensors_vcc.append(gpiozero.OutputDevice(SENSOR1_VCC, active_high=True, initial_value=False))
+sensors_vcc = np.array(sensors_vcc)
 
-sensors[0] = gpiozero.DigitalInputDevice(SENSOR0, pull_up=None, active_state=False)
-sensors[1] = gpiozero.DigitalInputDevice(SENSOR1, pull_up=None, active_state=False)
-sensors_vcc[0] = gpiozero.OutputDevice(SENSOR0_VCC, active_high=True, initial_value=False)
-sensors_vcc[1] = gpiozero.OutputDevice(SENSOR1_VCC, active_high=True, initial_value=False)
 
 # Variables GLOBALS
-valves_t0[0] = 0 # Darrer instant que la vàlvula 0 ha estat oberta.
-valves_t1[0] = 0 # Darrer instant que la vàlvula 0 ha estat tancada.
-valves_t0[1] = 0 # Darrer instant que la vàlvula 1 ha estat oberta.
-valves_t1[1] = 0 # Darrer instant que la vàlvula 1 ha estat tancada.
+valves_t0 = []
+valves_t0.append(0) # Darrer instant que la vàlvula 0 ha estat oberta.
+valves_t0.append(0) # Darrer instant que la vàlvula 1 ha estat oberta.
+valves_t0 = np.array(valves_t0)
+
+valves_t1 = []
+valves_t1.append(0) # Darrer instant que la vàlvula 0 ha estat tancada.
+valves_t1.append(0) # Darrer instant que la vàlvula 1 ha estat tancada.
+valves_t1 = np.array(valves_t1)
