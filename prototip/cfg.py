@@ -31,6 +31,7 @@ SENSOR0_VCC = "BOARD29"
 SENSOR1_VCC = "BOARD33"
 
 # Creació dels OBJECTES.
+relays = [] 
 relays[0] = gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False)
 relays[1] = gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False)
 
