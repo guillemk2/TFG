@@ -35,7 +35,7 @@ SENSOR1_VCC = "BOARD33"
 relays_aux = []
 relays_aux.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False))
 relays_aux.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
-relays = array(relays_aux)
+relays = np.array(relays_aux)
 
 print(relays.size)
 print(relays)
