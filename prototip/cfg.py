@@ -73,13 +73,21 @@ soil_sensors_vcc = np.array(soil_sensors_vcc)
 
 
 # Variables GLOBALS
+temperature = 0.00
+
+moisture = []
+irrigation = []
 valves_t0 = []
 valves_t1 = []
 
 for i in range(SYS_SIZE):
+	moisture.append(0.00)
+	irrigation.append(0.00)
 	valves_t0.append(time()) # Darrer instant que les vàlvules han estat obertes
 	valves_t1.append(time()) # Darrer instant que les vàlvules han estat tancades
 
 valves_t0 = np.array(valves_t0,)
 valves_t1 = np.array(valves_t1,)
+moisture = np.array(moisture)
+irrigation = np.array(irrigation)
 

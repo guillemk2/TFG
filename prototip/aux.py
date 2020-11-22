@@ -14,7 +14,7 @@ from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIM
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
-from cfg import valves_t0, valves_t1
+from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Definició de funcions.
 		
@@ -31,20 +31,21 @@ def init():
 		buttons[i].when_released = button_released
 
 def open_valve(n):
-	global valves_t0
+	#global valves_t0
 	if(relays[n].value == 0):
 		relays[n].on()
 		valves_t0[n] = time()
 		print("Obertura electrovàlvula", n, ".")
 
 def close_valve(n):
-	global valves_t1
+	#global valves_t1
 	if(relays[n].value == 1):
 		if(time()-valves_t0[n] < BOUNCE_TIME): # Mínim temps d'obertura de la vàlvula
 			sleep(BOUNCE_TIME-(time()-valves_t0[n])) # Esperem el temps que falta per tancar
 		relays[n].off()
 		valves_t1[n] = time()
 		print("Tancament electrovàlvula", n, ". Reg:", round((valves_t1[n]-valves_t0[n])*FLOW, 1), "ml\n")
+		print(temperature)
 
 def set_valves(status):
 	if status:
@@ -87,11 +88,10 @@ def poll_soil_sensors():
 def poll_temp_sensor():
 	
 	try:
-		print("Temperatura (ºC): ", temp_sensor.temperature)
+		temperature = temp_sensor.temperature
 	except RuntimeError:
 		print("RuntimeError, try again ...")
 		poll_temp_sensor()
-		#continue
 
 def irrigate(btn):
 

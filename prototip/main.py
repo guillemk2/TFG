@@ -14,7 +14,7 @@ from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIM
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
-from cfg import valves_t0, valves_t1
+from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Funcions auxiliars
 import aux
