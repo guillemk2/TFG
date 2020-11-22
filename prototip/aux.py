@@ -70,18 +70,14 @@ def button_released(btn):
 def poll_soil_sensors():
 
 	for i in range(SYS_SIZE):
-			soil_sensors_vcc[i].on()
-		
-#		if (soil_sensors[0].value == DRY):
-#			threading.Thread(target=irrigate, args=(buttons[0],)).start()
-#			
-#		if (soil_sensors[1].value == DRY):
-#			threading.Thread(target=irrigate, args=(buttons[1],)).start()
+		soil_sensors_vcc[i].on()
+		moisture[i] = soil_sensors[0].value
 
-	for i in range(SYS_SIZE):
-		print("Humitat test", i, ":", soil_sensors[i].value)
-	
-	
+#		if (moisture[i] == DRY):
+#			threading.Thread(target=irrigate, args=(buttons[0],)).start()
+		print("Test", i, moisture[i])
+#			
+
 	sleep(POLL_TIME)
 			
 	for i in range(SYS_SIZE):

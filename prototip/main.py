@@ -23,7 +23,7 @@ def main_loop():
 
 	while 1:
 		
-		#aux.poll_soil_sensors()
+		poll_soil_sensors()
 
 		poll_temp_sensor()
 
