@@ -81,8 +81,8 @@ valves_t0 = []
 valves_t1 = []
 
 for i in range(SYS_SIZE):
-	moisture.append(0.00)
-	irrigation.append(0.00)
+	moisture.append(0)
+	irrigation.append(0.0)
 	valves_t0.append(time()) # Darrer instant que les vàlvules han estat obertes
 	valves_t1.append(time()) # Darrer instant que les vàlvules han estat tancades
 
