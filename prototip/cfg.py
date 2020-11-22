@@ -15,6 +15,7 @@ POLL_FREQUENCY = 5 		# Freqüència de lectura dels sensors
 POLL_TIME = 0.25		# Duració de la lectura dels sensors
 IRRIGATION_TIME = 1		# Temps de reg
 BOUNCE_TIME = 0.25		# Temps de rebot dels botons (mínim temps de reg)
+FLOW = 1.65				# Cabal de les vàlvules en ml/s
 
 # Valors d'humitat
 DRY = 0  # Sec

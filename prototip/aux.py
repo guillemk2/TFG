@@ -10,7 +10,7 @@ import gpiozero
 import adafruit_dht
 
 # Constants
-from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, DRY, WET, url, payload
+from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, payload
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
@@ -44,7 +44,7 @@ def close_valve(n):
 			sleep(BOUNCE_TIME-(time()-valves_t0[n])) # Esperem el temps que falta per tancar
 		relays[n].off()
 		valves_t1[n] = time()
-		print("Tancament electrovàlvula", n, "Temps de reg:", round(valves_t1[n]-valves_t0[n], 2), "segons\n")
+		print("Tancament electrovàlvula", n, "Reg:", round((valves_t1[n]-valves_t0[n])*FLOW, 2), "ml\n")
 
 def set_valves(status):
 	if status:
