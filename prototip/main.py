@@ -10,7 +10,7 @@ import gpiozero
 import adafruit_dht
 
 # Constants
-from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, payload
+from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
@@ -24,8 +24,7 @@ if __name__ == "__main__":
 	try:
 
 		aux.init()
-		aux.poll_sensors()
-		pause()
+		aux.main_loop()
 
 	except KeyboardInterrupt:
 
@@ -34,3 +33,17 @@ if __name__ == "__main__":
 		aux.set_valves(False)
 		print("\nSortida de l'aplicació\n")
 		sys.exit(0)
+
+def main_loop():
+
+	while 1:
+		
+		#poll_soil_sensors()
+
+		poll_temp_sensor()
+
+		
+
+		#post()
+		
+		sleep(POLL_FREQUENCY)

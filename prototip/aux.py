@@ -10,7 +10,7 @@ import gpiozero
 import adafruit_dht
 
 # Constants
-from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, payload
+from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
@@ -64,11 +64,10 @@ def button_released(btn):
 		if (buttons[i] == btn):
 			close_valve(i)
 
-def poll_sensors():
+def poll_soil_sensors():
 
-	while 1:
-		soil_sensors_vcc[0].on()
-		soil_sensors_vcc[1].on()
+	for i in range(SYS_SIZE):
+			soil_sensors_vcc[i].on()
 		
 #		if (soil_sensors[0].value == DRY):
 #			threading.Thread(target=irrigate, args=(buttons[0],)).start()
@@ -79,20 +78,21 @@ def poll_sensors():
 		for i in range(SYS_SIZE):
 			print("Humitat test", i, ":", soil_sensors[i].value)
 		
-		try:
-			print("Temperatura (ºC): ", temp_sensor.temperature)
-		except RuntimeError:
-			continue
-
+		
 		sleep(POLL_TIME)
 				
-		soil_sensors_vcc[0].off()
-		soil_sensors_vcc[1].off()
+		for i in range(SYS_SIZE):
+			soil_sensors_vcc[i].off()
 
-		#post()
-		
-		sleep(POLL_FREQUENCY)
+poll_temp_sensor():
 	
+	try:
+			print("Temperatura (ºC): ", temp_sensor.temperature)
+		except RuntimeError:
+			print("RuntimeError, try again ...")
+			poll_temp_sensor()
+			continue
+
 def irrigate(btn):
 
 	print("\nAuto irrigation\n")
@@ -102,6 +102,9 @@ def irrigate(btn):
 	sys.exit(0) # Matem el thread
 
 def post():
+
+
+	payload = {'date': time(), 'moisture': [0, 1]}
 
 	r = requests.post(url, data=json.dumps(payload))
 	print(r.status_code, r.text)

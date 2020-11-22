@@ -23,7 +23,6 @@ WET = 1  # Humit
 
 # Paràmetres de connexió al servidor
 url = 'http://192.168.1.134:8080'
-payload = {'date': time(), 'moisture': [0, 1]}
 
 # Situació dels pins per a components únics.
 TEMP_SENSOR_PIN = 22 # Pin 15: GPIO22
