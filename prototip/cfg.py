@@ -14,6 +14,7 @@ SYS_SIZE = 2
 POLL_FREQUENCY = 5 		# Freqüència de lectura dels sensors
 POLL_TIME = 0.25		# Duració de la lectura dels sensors
 IRRIGATION_TIME = 1		# Temps de reg
+BOUNCE_TIME = 0.25		# Temps de rebot dels botons (mínim temps de reg)
 
 # Valors d'humitat
 DRY = 0  # Sec
