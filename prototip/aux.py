@@ -35,7 +35,7 @@ def open_valve(n):
 	if(relays[n].value == 0):
 		relays[n].on()
 		valves_t0[n] = time()
-		print("Obertura electrovàlvula", n)
+		print("Obertura electrovàlvula", n, ".")
 
 def close_valve(n):
 	global valves_t1
@@ -44,7 +44,7 @@ def close_valve(n):
 			sleep(BOUNCE_TIME-(time()-valves_t0[n])) # Esperem el temps que falta per tancar
 		relays[n].off()
 		valves_t1[n] = time()
-		print("Tancament electrovàlvula", n, "Reg:", round((valves_t1[n]-valves_t0[n])*FLOW, 2), "ml\n")
+		print("Tancament electrovàlvula", n, ". Reg:", round((valves_t1[n]-valves_t0[n])*FLOW, 1), "ml\n")
 
 def set_valves(status):
 	if status:
