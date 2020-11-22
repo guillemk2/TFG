@@ -81,8 +81,6 @@ def poll_sensors():
 		
 		try:
 			print("Temperatura (ºC): ", temp_sensor.temperature)
-			print(temp_sensor.humidity)
-			print("Humitat relativa (%): ", format(temp_sensor.humidity, ".2f"), "\n")
 		except RuntimeError:
 			continue
 
