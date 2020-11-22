@@ -23,11 +23,11 @@ def main_loop():
 
 	while 1:
 		
-		#poll_soil_sensors()
+		#aux.poll_soil_sensors()
 
-		poll_temp_sensor()
+		aux.poll_temp_sensor()
 
-		#post()
+		#aux.post()
 		
 		sleep(POLL_FREQUENCY)
 
