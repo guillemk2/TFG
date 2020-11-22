@@ -99,10 +99,11 @@ def irrigate(n):
 def post():
 
 	payload = {'date': time(), 'temperature': temperature}
-	plants = [0, 3, 2, 4]
+	plants = []
+	for i in range(SYS_SIZE):
+		plants.append({'moisture': moisture[i], 'irrigation': irrigation[i]})
 	payload["plants"] = plants
 	print(payload)
-	print(type(payload))
 
 #	r = requests.post(url, data=json.dumps(payload))
 #	print(r.status_code, r.text)
