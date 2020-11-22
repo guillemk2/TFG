@@ -61,7 +61,7 @@ soil_sensors_vcc = []
 
 for i in range(SYS_SIZE):
 	relays.append(gpiozero.OutputDevice(RELAY_PINS[i], active_high=False, initial_value=False))
-	buttons.append(gpiozero.Button(BUTTON_PINS[i]), bounce_time=0.01)
+	buttons.append(gpiozero.Button(BUTTON_PINS[i], bounce_time=0.01))
 	soil_sensors.append(gpiozero.DigitalInputDevice(SOIL_SENSOR_PINS[i], pull_up=None, active_state=False))
 	soil_sensors_vcc.append(gpiozero.OutputDevice(SOIL_SENSOR_VCC_PINS[i], active_high=True, initial_value=False))
 
