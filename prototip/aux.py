@@ -36,11 +36,12 @@ def open_valve(n):
 		relays[n].on()
 		valves_t0[n] = time()
 		print("Obertura electrovàlvula", n)
-		sleep(0.25) # Mínim temps d'obertura de la vàlvula
 
 def close_valve(n):
 	global valves_t1
 	if(relays[n].value == 1):
+		print(0.25-(time()-valves_t0[n]))
+		sleep(0.25-(time()-valves_t0[n])) # Mínim temps d'obertura de la vàlvula
 		relays[n].off()
 		valves_t1[n] = time()
 		print("Tancament electrovàlvula", n, "Temps de reg:", round(valves_t1[n]-valves_t0[n], 2), "segons\n")
