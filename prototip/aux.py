@@ -77,8 +77,12 @@ def poll_sensors():
 		for i in range(SYS_SIZE):
 			print("Humitat test", i, ":", soil_sensors[i].value)
 		
-		print("Temperatura (ºC): ", temp_sensor.temperature)
-		print("Humitat relativa (%): ", format(temp_sensor.humidity, ".2f"))
+		try:
+            print("Temperatura (ºC): ", temp_sensor.temperature)
+			print("Humitat relativa (%): ", format(temp_sensor.humidity, ".2f\n"))
+
+        except RuntimeError:
+            continue
 
 		sleep(POLL_TIME)
 				
