@@ -86,7 +86,7 @@ def poll_soil_sensors():
 		soil_sensors_vcc[i].off()
 
 def poll_temp_sensor():
-	
+	global temperature
 	try:
 		temperature = temp_sensor.temperature
 		print(temperature)

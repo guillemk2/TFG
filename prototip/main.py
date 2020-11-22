@@ -41,6 +41,6 @@ if __name__ == "__main__":
 
 		print("\n")
 		# Tanquem les dues electrovàlvules
-		aux.set_valves(False)
+		set_valves(False)
 		print("\nSortida de l'aplicació\n")
 		sys.exit(0)
