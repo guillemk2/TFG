@@ -87,11 +87,11 @@ def poll_soil_sensors():
 def poll_temp_sensor():
 	
 	try:
-			print("Temperatura (ºC): ", temp_sensor.temperature)
-		except RuntimeError:
-			print("RuntimeError, try again ...")
-			poll_temp_sensor()
-			continue
+		print("Temperatura (ºC): ", temp_sensor.temperature)
+	except RuntimeError:
+		print("RuntimeError, try again ...")
+		poll_temp_sensor()
+		continue
 
 def irrigate(btn):
 
