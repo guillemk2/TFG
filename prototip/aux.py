@@ -74,7 +74,7 @@ def poll_soil_sensors():
 		moisture[i] = soil_sensors[i].value
 
 		if (moisture[i] == DRY):
-			threading.Thread(target=irrigate, args=(i,)).start()
+#			threading.Thread(target=irrigate, args=(i,)).start()
 		print("Test", i, moisture[i])
 
 	sleep(POLL_TIME)
