@@ -31,21 +31,23 @@ def init():
 		buttons[i].when_released = button_released
 
 def open_valve(n):
-	#global valves_t0
+	
 	if(relays[n].value == 0):
 		relays[n].on()
 		valves_t0[n] = time()
 		print("Obertura electrovàlvula", n, ".")
 
 def close_valve(n):
-	#global valves_t1
+	
 	if(relays[n].value == 1):
 		if(time()-valves_t0[n] < BOUNCE_TIME): # Mínim temps d'obertura de la vàlvula
 			sleep(BOUNCE_TIME-(time()-valves_t0[n])) # Esperem el temps que falta per tancar
 		relays[n].off()
 		valves_t1[n] = time()
-		print("Tancament electrovàlvula", n, ". Reg:", round((valves_t1[n]-valves_t0[n])*FLOW, 1), "ml\n")
-		print(temperature)
+		volume = round((valves_t1[n]-valves_t0[n])*FLOW, 1)
+		irrigation[n] += volume
+		print("Tancament electrovàlvula", n, ". Reg:", volume, "ml\n")
+		print(temperature, irrigation[n])
 
 def set_valves(status):
 	if status:
@@ -89,7 +91,6 @@ def poll_temp_sensor():
 	global temperature
 	try:
 		temperature = temp_sensor.temperature
-		print(temperature)
 	except RuntimeError:
 		print("RuntimeError, try again ...")
 		poll_temp_sensor()

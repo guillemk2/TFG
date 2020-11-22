@@ -17,7 +17,7 @@ from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Funcions auxiliars
-from aux import init, poll_soil_sensors, poll_temp_sensor, post
+from aux import init, poll_soil_sensors, poll_temp_sensor, post, set_valves
 
 def main_loop():
 
