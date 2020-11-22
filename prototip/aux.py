@@ -91,7 +91,7 @@ def poll_temp_sensor():
 	except RuntimeError:
 		print("RuntimeError, try again ...")
 		poll_temp_sensor()
-		continue
+		#continue
 
 def irrigate(btn):
 
