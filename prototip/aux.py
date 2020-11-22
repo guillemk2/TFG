@@ -89,6 +89,7 @@ def poll_temp_sensor():
 	
 	try:
 		temperature = temp_sensor.temperature
+		print(temperature)
 	except RuntimeError:
 		print("RuntimeError, try again ...")
 		poll_temp_sensor()
@@ -102,7 +103,6 @@ def irrigate(btn):
 	sys.exit(0) # Matem el thread
 
 def post():
-
 
 	payload = {'date': time(), 'moisture': [0, 1]}
 

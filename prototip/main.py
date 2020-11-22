@@ -17,7 +17,7 @@ from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Funcions auxiliars
-import aux
+from aux import init, poll_soil_sensors, poll_temp_sensor, post
 
 def main_loop():
 
@@ -25,7 +25,7 @@ def main_loop():
 		
 		#aux.poll_soil_sensors()
 
-		aux.poll_temp_sensor()
+		poll_temp_sensor()
 
 		#aux.post()
 		
@@ -34,7 +34,7 @@ def main_loop():
 if __name__ == "__main__":
 	try:
 
-		aux.init()
+		init()
 		main_loop()
 
 	except KeyboardInterrupt:
