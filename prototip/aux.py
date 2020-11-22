@@ -98,7 +98,9 @@ def irrigate(n):
 
 def post():
 
-	payload = {'date': time(), 'temperature': temperature, 'plants': [0,1]}
+	payload = {'date': time(), 'temperature': temperature}
+	plants = [0, 3, 2, 4]
+	payload["plants"] = plants
 	print(payload)
 	print(type(payload))
 
