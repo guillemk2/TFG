@@ -1,15 +1,26 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const PostSchema = mongoose.Schema({
-    date: {
-        type: Date,
-        required: true,
-        default: Date.now
-    },
-    moisture: [{
-        type: Boolean, 
-        required: true
-    }]
+const PostSchema = Schema({
+	date: {
+		type: Date,
+		required: true,
+		default: Date.now
+	},
+	temperature: {
+		type: Schema.Types.Decimal128,
+		required: true
+	},
+	plants: [{
+		moisture: {
+			type: Boolean, 
+			required: true
+		},
+		irrigation: {
+			type: Schema.Types.Decimal128,
+			required: true
+		}
+	}]
 });
 
 

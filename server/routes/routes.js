@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
 	
 	try {
 		
-		res.send('Get some info');
+		res.send('Nothing to see here');
 
 	} catch (err) {
 		res.status(500).json({ "error": err.message });
@@ -20,7 +20,8 @@ router.post('/', async (req, res) => {
 
 		const post = new Post({
 			date: req.body.date,
-			moisture: req.body.moisture
+			temperature: req.body.temperature,
+			plants: req.body.plants
 		});
 
 		const savedPost = await post.save();

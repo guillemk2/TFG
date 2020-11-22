@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //ROUTES
-app.use('/', require('./routes/main'));
+app.use('/', require('./routes/routes'));
 
 //Listen
 app.listen(8080);
