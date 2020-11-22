@@ -91,8 +91,6 @@ def poll_temp_sensor():
 		poll_temp_sensor()
 
 def irrigate(n):
-
-	print("\nAuto irrigation of valve", n, "\n")
 	open_valve(n)
 	sleep(IRRIGATION_TIME)
 	close_valve(n)
@@ -100,7 +98,8 @@ def irrigate(n):
 
 def post():
 
-	payload = {'date': time(), 'moisture': [0, 1]}
+	payload = {'date': time(), 'temperature': temperature, 'plants': [0,1]}
+	print(payload)
 
-	r = requests.post(url, data=json.dumps(payload))
-	print(r.status_code, r.text)
+#	r = requests.post(url, data=json.dumps(payload))
+#	print(r.status_code, r.text)
