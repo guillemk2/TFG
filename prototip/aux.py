@@ -73,9 +73,8 @@ def poll_soil_sensors():
 		soil_sensors_vcc[i].on()
 		moisture[i] = soil_sensors[i].value
 
-#		if (moisture[i] == DRY):
-#			threading.Thread(target=irrigate, args=(i,)).start()
-		print("Test", i, moisture[i])
+		if (moisture[i] == DRY):
+			threading.Thread(target=irrigate, args=(i,)).start()
 
 	sleep(POLL_TIME)
 			
@@ -105,5 +104,5 @@ def post():
 	payload["plants"] = plants
 	print(payload)
 
-#	r = requests.post(url, data=json.dumps(payload))
-#	print(r.status_code, r.text)
+	r = requests.post(url, data=json.dumps(payload))
+	print(r.status_code, r.text)
