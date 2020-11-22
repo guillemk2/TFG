@@ -82,9 +82,9 @@ def poll_sensors():
 			print("Humitat relativa (%): ", format(temp_sensor.humidity, ".2f\n"))
 
         except RuntimeError:
-            continue
+        	continue
 
-		sleep(POLL_TIME)
+        sleep(POLL_TIME)
 				
 		soil_sensors_vcc[0].off()
 		soil_sensors_vcc[1].off()
