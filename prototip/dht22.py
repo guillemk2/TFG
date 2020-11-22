@@ -1,15 +1,15 @@
 import adafruit_dht
-import time
-import board
+
+
 
 # --------- User Settings ---------
 SENSOR_LOCATION_NAME = "Office"
-
+SENSOR_PIN = 22 # Pin 15: GPIO22
 MINUTES_BETWEEN_READS = 10
 METRIC_UNITS = True
 # ---------------------------------
 
-dhtSensor = adafruit_dht.DHT22("GPIO22")
+dhtSensor = adafruit_dht.DHT22(SENSOR_PIN)
 
 while True:
         try:

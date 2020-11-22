@@ -7,11 +7,12 @@ import threading
 import requests
 import json
 import gpiozero
+import adafruit_dht
 
 # Constants
 from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, DRY, WET, url, payload
 # Objectes
-from cfg import relays, buttons, soil_sensors, soil_sensors_vcc
+from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
 from cfg import valves_t0, valves_t1
 
@@ -23,7 +24,7 @@ if __name__ == "__main__":
 	try:
 
 		aux.init()
-		#aux.poll_sensors()
+		aux.poll_sensors()
 
 	except KeyboardInterrupt:
 

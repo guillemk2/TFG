@@ -3,6 +3,7 @@
 from time import time
 import numpy as np
 import gpiozero
+import adafruit_dht
 
 # CONSTANTS
 
@@ -22,7 +23,10 @@ WET = 1  # Humit
 url = 'http://192.168.1.134:8080'
 payload = {'date': time(), 'moisture': [0, 1]}
 
-# Situació dels pins per a cada component
+# Situació dels pins per a components únics.
+TEMP_SENSOR_PIN = 22 # Pin 15: GPIO22
+
+# Situació dels pins per a components múltiples.
 RELAY_PINS = []
 BUTTON_PINS = []
 SOIL_SENSOR_PINS = []
@@ -46,7 +50,10 @@ SOIL_SENSOR_PINS = np.array(SOIL_SENSOR_PINS)
 SOIL_SENSOR_VCC_PINS = np.array(SOIL_SENSOR_VCC_PINS)
 
 
-# Creació dels OBJECTES.
+# Creació dels OBJECTES únics.
+temp_sensor = adafruit_dht.DHT22(TEMP_SENSOR_PIN)
+
+# Creació dels OBJECTES múltiples.
 relays = []
 buttons = []
 soil_sensors = []

@@ -7,11 +7,12 @@ import threading
 import requests
 import json
 import gpiozero
+import adafruit_dht
 
 # Constants
 from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, DRY, WET, url, payload
 # Objectes
-from cfg import relays, buttons, soil_sensors, soil_sensors_vcc
+from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
 from cfg import valves_t0, valves_t1
 
@@ -63,24 +64,30 @@ def button_released(btn):
 		if (buttons[i] == btn):
 			close_valve(i)
 
-def poll_soil_sensors():
+def poll_sensors():
 
 	while 1:
 		soil_sensors_vcc[0].on()
 		soil_sensors_vcc[1].on()
 		
-		if (soil_sensors[0].value == DRY):
-			threading.Thread(target=irrigate, args=(buttons[0],)).start()
+#		if (soil_sensors[0].value == DRY):
+#			threading.Thread(target=irrigate, args=(buttons[0],)).start()
 			
-		if (soil_sensors[1].value == DRY):
-			threading.Thread(target=irrigate, args=(buttons[1],)).start()
+#		if (soil_sensors[1].value == DRY):
+#			threading.Thread(target=irrigate, args=(buttons[1],)).start()
+
+		for i in range(SYS_SIZE):
+			print("Humitat test", i, ":", soil_sensors[i].value)
 		
+		print("Temperatura (ºC): ", temp_sensor.temperature)
+		print("Humitat relativa (%): ", format(temp_sensor.humidity, ".2f")
+
 		sleep(POLL_TIME)
 				
 		soil_sensors_vcc[0].off()
 		soil_sensors_vcc[1].off()
 
-		post()
+		#post()
 		
 		sleep(POLL_FREQUENCY)
 	
