@@ -78,7 +78,7 @@ def poll_sensors():
 			print("Humitat test", i, ":", soil_sensors[i].value)
 		
 		print("Temperatura (ºC): ", temp_sensor.temperature)
-		print("Humitat relativa (%): ", format(temp_sensor.humidity, ".2f")
+		print("Humitat relativa (%): ", format(temp_sensor.humidity, ".2f"))
 
 		sleep(POLL_TIME)
 				
