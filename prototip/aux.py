@@ -84,7 +84,7 @@ def poll_soil_sensors():
 	for i in range(SYS_SIZE):
 		soil_sensors_vcc[i].off()
 
-poll_temp_sensor():
+def poll_temp_sensor():
 	
 	try:
 			print("Temperatura (ºC): ", temp_sensor.temperature)
