@@ -44,10 +44,10 @@ def close_valve(n):
 			sleep(BOUNCE_TIME-(time()-valves_t0[n])) # Esperem el temps que falta per tancar
 		relays[n].off()
 		valves_t1[n] = time()
-		volume = round((valves_t1[n]-valves_t0[n])*FLOW, 1)
+		volume = (valves_t1[n]-valves_t0[n])*FLOW, 1
 		irrigation[n] += volume
-		print("Tancament electrovàlvula", n, ". Reg:", volume, "ml\n")
-		print(temperature, irrigation[n])
+		print("Tancament electrovàlvula", n, ". Reg:", round(volume, 1), "ml\n")
+		print(temperature, round(irrigation[n], 1))
 
 def set_valves(status):
 	if status:
