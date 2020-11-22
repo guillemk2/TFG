@@ -23,8 +23,10 @@ url = 'http://192.168.1.134:8080'
 payload = {'date': time(), 'moisture': [0, 1]}
 
 # Situació dels pins per a cada component
-RELAY_0 = "BOARD11"
-RELAY_1 = "BOARD12"
+RELAY_PINS = []
+RELAY_PINS.append("BOARD11")
+RELAY_PINS.append("BOARD12")
+RELAY_PINS = np.array(RELAY_PINS)
 
 BUTTON_0 = "BOARD16"
 BUTTON_1 = "BOARD18"
@@ -36,8 +38,8 @@ SENSOR1_VCC = "BOARD33"
 
 # Creació dels OBJECTES.
 relays = []
-relays.append(gpiozero.OutputDevice(RELAY_0, active_high=False, initial_value=False))
-relays.append(gpiozero.OutputDevice(RELAY_1, active_high=False, initial_value=False))
+for i in range(SYS_SIZE):
+	relays.append(gpiozero.OutputDevice(RELAY_PINS[i], active_high=False, initial_value=False))
 relays = np.array(relays)
 
 buttons = []
