@@ -37,8 +37,8 @@ def open_valve(n):
 		relays[n].on()
 		valves_t0[n] = time()
 		print("Obertura electrovàlvula", n)
-		print("valves_t0: ", valves_t0)
-		print("valves_t1: ", valves_t1)
+		print("valves_t0: ", valves_t0[0])
+		print("valves_t1: ", valves_t1[0])
 
 def close_valve(n):
 	global valves_t1
@@ -46,9 +46,9 @@ def close_valve(n):
 		relays[n].off()
 		valves_t1[n] = time()
 		print("Tancament electrovàlvula", n, "Temps de reg:", valves_t1[n]-valves_t0[n], "segons\n")
-		print("valves_t0: ", valves_t0)
-		print("valves_t1: ", valves_t1)
-		
+		print("valves_t0: ", valves_t0[0])
+		print("valves_t1: ", valves_t1[0])
+
 def set_valves(status):
 	if status:
 		for i in range(SYS_SIZE):
