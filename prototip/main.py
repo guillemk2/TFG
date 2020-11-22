@@ -19,6 +19,17 @@ from cfg import valves_t0, valves_t1
 # Funcions auxiliars
 import aux
 
+def main_loop():
+
+	while 1:
+		
+		#poll_soil_sensors()
+
+		poll_temp_sensor()
+
+		#post()
+		
+		sleep(POLL_FREQUENCY)
 
 if __name__ == "__main__":
 	try:
@@ -33,17 +44,3 @@ if __name__ == "__main__":
 		aux.set_valves(False)
 		print("\nSortida de l'aplicació\n")
 		sys.exit(0)
-
-def main_loop():
-
-	while 1:
-		
-		#poll_soil_sensors()
-
-		poll_temp_sensor()
-
-		
-
-		#post()
-		
-		sleep(POLL_FREQUENCY)
