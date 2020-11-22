@@ -32,7 +32,7 @@ def init():
 
 def open_valve(n):
 	global valves_t0
-	if(relays[n].value == 0):
+	if(relays[n].value == 0 and time()-valves_t1[n] > 0.02):
 		relays[n].on()
 		valves_t0[n] = time()
 		print("Obertura electrovàlvula", n)
