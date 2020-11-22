@@ -92,10 +92,10 @@ def poll_temp_sensor():
 
 def irrigate(n):
 
-	print("\nAuto irrigation\n")
-	open_valve(i)
+	print("\nAuto irrigation of valve", n, "\n")
+	open_valve(n)
 	sleep(IRRIGATION_TIME)
-	close_valve(i)
+	close_valve(n)
 	sys.exit(0) # Matem el thread
 
 def post():
