@@ -8,6 +8,7 @@ import requests
 import json
 import gpiozero
 import adafruit_dht
+from numpyencoder import NumpyEncoder
 
 # Constants
 from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url
@@ -102,7 +103,8 @@ def post():
 	for i in range(SYS_SIZE):
 		plants.append({'moisture': moisture[i], 'irrigation': irrigation[i]})
 	payload["plants"] = plants
+	
 	print(payload)
 
-	r = requests.post(url, data=json.dumps(payload))
+	r = requests.post(url, data=json.dumps(payload, cls=NumpyEncoder))
 	print(r.status_code, r.text)
