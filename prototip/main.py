@@ -24,7 +24,7 @@ if __name__ == "__main__":
 	try:
 
 		aux.init()
-		aux.main_loop()
+		main_loop()
 
 	except KeyboardInterrupt:
 
