@@ -107,4 +107,5 @@ def post():
 	print(payload)
 
 	r = requests.post(url, data=json.dumps(payload, cls=NumpyEncoder))
+	print(json.dumps(payload, cls=NumpyEncoder))
 	print(r.status_code, r.text)
