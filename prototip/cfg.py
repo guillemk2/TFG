@@ -60,8 +60,8 @@ for i in range(SYS_SIZE):
 
 relays = np.array(relays)
 buttons = np.array(buttons)
-soil_sensors = np.array(sensors)
-soil_sensors_vcc = np.array(sensors_vcc)
+soil_sensors = np.array(soil_sensors)
+soil_sensors_vcc = np.array(soil_sensors_vcc)
 
 
 # Variables GLOBALS
