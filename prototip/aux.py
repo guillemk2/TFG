@@ -100,6 +100,7 @@ def post():
 
 	payload = {'date': time(), 'temperature': temperature, 'plants': [0,1]}
 	print(payload)
+	print(type(payload))
 
 #	r = requests.post(url, data=json.dumps(payload))
 #	print(r.status_code, r.text)
