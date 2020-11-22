@@ -9,7 +9,7 @@ MINUTES_BETWEEN_READS = 10
 METRIC_UNITS = True
 # ---------------------------------
 
-dhtSensor = adafruit_dht.DHT22(15)
+dhtSensor = adafruit_dht.DHT22(board.D22)
 
 while True:
         try:
