@@ -70,7 +70,7 @@ valves_t1 = []
 
 for i in range(SYS_SIZE):
 	valves_t0.append(time()) # Darrer instant que les vàlvules han estat obertes
-	valves_t1.append(time(0)) # Darrer instant que les vàlvules han estat tancades
+	valves_t1.append(time()) # Darrer instant que les vàlvules han estat tancades
 
 valves_t0 = np.array(valves_t0,)
 valves_t1 = np.array(valves_t1,)
