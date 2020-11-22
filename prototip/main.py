@@ -25,6 +25,7 @@ if __name__ == "__main__":
 
 		aux.init()
 		aux.poll_sensors()
+		pause()
 
 	except KeyboardInterrupt:
 

@@ -30,8 +30,6 @@ def init():
 		buttons[i].when_pressed = button_pressed
 		buttons[i].when_released = button_released
 
-	pause()
-
 def open_valve(n):
 	global valves_t0
 	if(relays[n].value == 0):
