@@ -11,7 +11,7 @@ import gpiozero
 # Constants
 from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, DRY, WET, url, payload
 # Objectes
-from cfg import relays, buttons, sensors, sensors_vcc
+from cfg import relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
 from cfg import valves_t0, valves_t1
 
