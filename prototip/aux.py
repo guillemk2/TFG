@@ -101,7 +101,8 @@ def post():
 	payload = {'date': time(), 'temperature': temperature}
 	plants = []
 	for i in range(SYS_SIZE):
-		plants.append({'moisture': moisture[i], 'irrigation': irrigation[i]})
+		plants.append({'moisture': moisture[i], 'irrigation': round(irrigation[i], 1)})
+		irrigation[i] = 0 # Restablim quantitat de reg acumulada
 	payload["plants"] = plants
 
 	r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
