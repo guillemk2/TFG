@@ -41,5 +41,6 @@ if __name__ == "__main__":
 
 		# Tanquem les dues electrovàlvules
 		set_valves(False)
-		print("Aturada del sistema per interripció de teclat.\n")
+		print("Aturada del sistema per interrupció de teclat.\n", file=f)
+		f.close()
 		sys.exit(0)

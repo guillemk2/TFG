@@ -21,7 +21,9 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 		
 def init():
 
-	print("Posada en marxa del sistema: ", ctime(), "\n")
+	f = open("~/Documents/logs.txt", "a")
+
+	print("Posada en marxa del sistema: ", ctime(), "\n", file=f)
 	
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
@@ -36,7 +38,7 @@ def open_valve(n):
 	if(relays[n].value == 0):
 		relays[n].on()
 		valves_t0[n] = time()
-		#print("Obertura electrovàlvula", n, ".")
+		#print("Obertura electrovàlvula", n, ".", file=f)
 
 def close_valve(n):
 	
@@ -47,7 +49,7 @@ def close_valve(n):
 		valves_t1[n] = time()
 		volume = (valves_t1[n]-valves_t0[n])*FLOW
 		irrigation[n] += volume
-		print("Test", n, ". Reg:", round(volume, 1), "ml. Reg acumulat des del darrer cicle", round(irrigation[n], 1), "ml")
+		print("Test", n, ". Reg:", round(volume, 1), "ml. Reg acumulat des del darrer cicle", round(irrigation[n], 1), "ml", file=f)
 
 def set_valves(status):
 	if status:
@@ -85,9 +87,9 @@ def poll_temp_sensor():
 	global temperature
 	try:
 		temperature = temp_sensor.temperature
-		print("Temperatura:", temperature, "ºC")
+		print("Temperatura:", temperature, "ºC", file=f)
 	except RuntimeError:
-		print("RuntimeError, try again ...")
+		print("RuntimeError, try again ...", file=f)
 		poll_temp_sensor()
 
 def irrigate(n):
@@ -109,8 +111,8 @@ def post():
 
 	try:
 		r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
-		print("Dades enviades a ", ctime(), ", codi resposta: ", r.status_code, "\n")
+		print("Dades enviades a ", ctime(), ", codi resposta: ", r.status_code, "\n", file=f)
 	except requests.exceptions.ConnectionError:
-		print("Connexió amb servidor fallida a ", ctime())
+		print("Intent fallit de connexió amb servidor ", ctime(), "\n", file=f)
 		pass
 	
