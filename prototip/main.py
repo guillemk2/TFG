@@ -28,6 +28,8 @@ def main_loop():
 		poll_temp_sensor()
 
 		post()
+
+		f.flush()
 		
 		sleep(POLL_FREQUENCY)
 
