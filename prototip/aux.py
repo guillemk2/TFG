@@ -11,7 +11,7 @@ import adafruit_dht
 from numpyencoder import NumpyEncoder
 
 # Constants
-from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url
+from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, headers
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
 # Variables globals
@@ -103,9 +103,9 @@ def post():
 	for i in range(SYS_SIZE):
 		plants.append({'moisture': moisture[i], 'irrigation': irrigation[i]})
 	payload["plants"] = plants
-	
+
 	print(payload)
 
-	r = requests.post(url, data=json.dumps(payload, cls=NumpyEncoder))
+	r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
 	print(json.dumps(payload, cls=NumpyEncoder))
 	print(r.status_code, r.text)
