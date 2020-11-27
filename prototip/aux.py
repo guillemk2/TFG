@@ -21,7 +21,7 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 		
 def init():
 
-	print("Posada en marxa del sistema: ", ctime())
+	print("Posada en marxa del sistema: ", ctime(), "\n")
 	
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
@@ -47,7 +47,7 @@ def close_valve(n):
 		valves_t1[n] = time()
 		volume = (valves_t1[n]-valves_t0[n])*FLOW
 		irrigation[n] += volume
-		print("Test", n, ". Reg:", round(volume, 1), "ml. Reg acumulat", round(irrigation[n], 1), "ml\n")
+		print("Test", n, ". Reg:", round(volume, 1), "ml. Reg acumulat des del darrer cicle", round(irrigation[n], 1), "ml")
 
 def set_valves(status):
 	if status:
@@ -107,4 +107,4 @@ def post():
 
 	r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
 	
-	print("Dades enviades, codi resposta: ", r.status_code)
+	print("Dades enviades, codi resposta: ", r.status_code, "\n")

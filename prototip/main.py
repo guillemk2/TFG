@@ -39,8 +39,7 @@ if __name__ == "__main__":
 
 	except KeyboardInterrupt:
 
-		print("\n")
 		# Tanquem les dues electrovàlvules
 		set_valves(False)
-		print("\nSortida de l'aplicació\n")
+		print("Aturada del sistema per interripció de teclat.\n")
 		sys.exit(0)
