@@ -85,7 +85,7 @@ def poll_temp_sensor():
 	global temperature
 	try:
 		temperature = temp_sensor.temperature
-		print("Temperatura a", ctime(), ":", temperature)
+		print("Temperatura:", temperature, "ºC")
 	except RuntimeError:
 		print("RuntimeError, try again ...")
 		poll_temp_sensor()
@@ -107,4 +107,4 @@ def post():
 
 	r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
 	
-	print("Dades enviades, codi resposta: ", r.status_code, "\n")
+	print("Dades enviades a ", ctime(), ", codi resposta: ", r.status_code, "\n")
