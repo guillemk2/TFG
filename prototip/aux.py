@@ -98,7 +98,9 @@ def irrigate(n):
 
 def post():
 
-	payload = {'date': time(), 'temperature': temperature}
+	# Convermim el timestamp a milisegons per a la correcta lectura per MongoDB
+	payload = {'date': time()*1000, 'temperature': temperature}
+
 	plants = []
 	for i in range(SYS_SIZE):
 		plants.append({'moisture': moisture[i], 'irrigation': round(irrigation[i], 1)})
