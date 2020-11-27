@@ -26,7 +26,7 @@ url = 'http://192.168.1.134:8080'
 headers = {'Content-Type': 'application/json'}
 
 # Fitxer de logs
-f = open("/home/pi/Documents/logs.txt", "a")
+f = open("/home/pi/Documents/logs.txt", "a+")
 
 # Situació dels pins per a components únics.
 TEMP_SENSOR_PIN = 22 # Pin 15: GPIO22
