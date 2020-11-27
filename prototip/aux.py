@@ -104,8 +104,6 @@ def post():
 		plants.append({'moisture': moisture[i], 'irrigation': irrigation[i]})
 	payload["plants"] = plants
 
-	print(payload)
-
 	r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
-	print(json.dumps(payload, cls=NumpyEncoder))
+	
 	print(r.status_code, r.text)

@@ -11,7 +11,7 @@ import adafruit_dht
 SYS_SIZE = 2
 
 # Duració dels events (en segons)
-POLL_FREQUENCY = 2 		# Freqüència de lectura dels sensors
+POLL_FREQUENCY = 30		# Freqüència de lectura dels sensors
 POLL_TIME = 0.25		# Duració de la lectura dels sensors
 IRRIGATION_TIME = 0.5	# Temps de reg
 BOUNCE_TIME = 0.25		# Temps de rebot dels botons (mínim temps de reg)
