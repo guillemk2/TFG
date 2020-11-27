@@ -22,7 +22,7 @@ DRY = 0  # Sec
 WET = 1  # Humit
 
 # Paràmetres de connexió al servidor
-url = 'http://192.168.1.134:8080'
+url = 'http://127.0.0.1:8080'
 headers = {'Content-Type': 'application/json'}
 
 # Fitxer de logs
