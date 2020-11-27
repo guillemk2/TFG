@@ -13,15 +13,13 @@ from numpyencoder import NumpyEncoder
 # Constants
 from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, headers
 # Objectes
-from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc
+from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc, f
 # Variables globals
 from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Definició de funcions.
 		
 def init():
-
-	f = open("/home/pi/Documents/logs.txt", "a")
 
 	print("Posada en marxa del sistema: ", ctime(), "\n", file=f)
 	
