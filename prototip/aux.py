@@ -110,6 +110,7 @@ def post():
 	try:
 		r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
 		print("Dades enviades a ", ctime(), ", codi resposta: ", r.status_code, "\n")
-	except (ConnectionRefusedError, ConnectionError) as e:
+	except (ConnectionRefusedError, ConnectionError, NewConnectionError) as e:
 		print("Connexió amb servidor fallida a ", ctime())
+		pass
 	
