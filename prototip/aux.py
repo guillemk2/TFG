@@ -21,7 +21,7 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 		
 def init():
 
-	f = open("~/Documents/logs.txt", "a")
+	f = open("/home/pi/Documents/logs.txt", "a")
 
 	print("Posada en marxa del sistema: ", ctime(), "\n", file=f)
 	
