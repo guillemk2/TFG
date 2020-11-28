@@ -110,7 +110,10 @@ def post():
 	try:
 		r = requests.post(url, headers=headers, data=json.dumps(payload, cls=NumpyEncoder))
 		print(ctime(), "-->", "Dades enviades,", "codi resposta: ", r.status_code, "\n", file=f)
-	except requests.exceptions.ConnectionError:
+	except KeyboardInterrupt:
+		raise
+	except:
 		print(ctime(), "-->", "Intent fallit de connexió amb servidor.\n", file=f)
 		pass
+
 	
