@@ -19,7 +19,7 @@ app.use(express.json());
 app.use('/', require('./routes/routes'));
 
 // Settings
-app.set('httpPort', process.env.HTTPPORT || 3001);
+app.set('httpPort', process.env.HTTPPORT || 8080);
 
 //Listen
 app.listen(app.get('httpPort'), () => {
