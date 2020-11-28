@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv/config');
+require("dotenv").config({ path: '/home/pi/Documents/.env' }); 
 const app = express();
 
 // DB connection
