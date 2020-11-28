@@ -7,9 +7,16 @@ const app = express();
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(db => console.log('DB connected.'))
-.catch(err => console.log('DB error: ', err.message));
+var connectWithRetry = function() {
+	mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
+	.then(db => console.log('DB connected.'))
+	.catch(err => {
+		console.log('DB error: ', err.message);
+		console.log('Retrying connection in 5 sec');
+		setTimeout(connectWithRetry, 5000);
+	});
+}
+connectWithRetry();
 
 // Middlewares I
 app.use(express.urlencoded({ extended: false }));
