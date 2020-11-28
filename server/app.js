@@ -18,5 +18,10 @@ app.use(express.json());
 //ROUTES
 app.use('/', require('./routes/routes'));
 
+// Settings
+app.set('httpPort', process.env.HTTPPORT || 3001);
+
 //Listen
-app.listen(8080);
+app.listen(app.get('httpPort'), () => {
+    console.log(`HTTP server on port ${app.get('httpPort')}`);
+});
