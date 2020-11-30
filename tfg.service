@@ -1,0 +1,14 @@
+[Unit]
+Description=Sistema de reg per a hort urbà
+
+[Service]
+ExecStart=/home/pi/TFG/startup.sh
+Restart=always
+User=nobody
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/pi/TFG
+
+[Install]
+WantedBy=multi-user.target
