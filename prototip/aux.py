@@ -2,7 +2,7 @@
 
 import sys
 from time import time, ctime, sleep
-from signal import pause
+from signal import pause, signal
 import threading
 import requests
 import json
@@ -19,6 +19,7 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Definició de funcions.
 		
+
 def init():
 
 	print(ctime(), "-->", "Posada en marxa del sistema. Esperem 30s al servidor.\n", file=f)
@@ -87,7 +88,8 @@ def poll_soil_sensors():
 
 	# Esperem a que tots els testos estiguin regats per a continuar amb l'execució.
 	for t in threads:
-    t.join()
+    	t.join()
+    f.flush()
 
 def poll_temp_sensor():
 	global temperature
@@ -97,6 +99,7 @@ def poll_temp_sensor():
 	except RuntimeError:
 		print(ctime(), "-->", "RuntimeError, try again ...", file=f)
 		poll_temp_sensor()
+	f.flush()
 
 def irrigate(n):
 	open_valve(n)
@@ -122,5 +125,7 @@ def post():
 	except:
 		print(ctime(), "-->", "Intent fallit de connexió amb servidor.\n", file=f)
 		pass
+
+	f.flush()
 
 	

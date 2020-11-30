@@ -2,7 +2,7 @@
 
 import sys
 from time import time, ctime, sleep
-from signal import pause
+from signal import pause, signal
 import threading
 import requests
 import json
@@ -28,13 +28,12 @@ def main_loop():
 		poll_temp_sensor()
 
 		post()
-
-		f.flush()
 		
 		sleep(POLL_FREQUENCY)
 
 if __name__ == "__main__":
 	try:
+		signal(signal.SIGTERM, print("SIGTERM rebut.\n"))
 
 		init()
 		main_loop()
