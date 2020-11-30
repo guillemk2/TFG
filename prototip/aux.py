@@ -21,7 +21,8 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 		
 def init():
 
-	print(ctime(), "-->", "Posada en marxa del sistema.\n", file=f)
+	print(ctime(), "-->", "Posada en marxa del sistema. Esperem 30s al servidor.\n", file=f)
+	sleep(30)
 	
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
