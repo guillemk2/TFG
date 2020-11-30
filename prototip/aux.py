@@ -88,8 +88,9 @@ def poll_soil_sensors():
 
 	# Esperem a que tots els testos estiguin regats per a continuar amb l'execució.
 	for t in threads:
-    	t.join()
-    f.flush()
+		t.join()
+
+	f.flush()
 
 def poll_temp_sensor():
 	global temperature
