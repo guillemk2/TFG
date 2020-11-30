@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Obtenir última versió del codi
 git --work-tree=/home/pi/TFG/ --git-dir=/home/pi/TFG/.git pull origin dev
