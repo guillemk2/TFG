@@ -20,8 +20,10 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 # Definició de funcions.
 		
 def receiveSignal(signalNumber, frame):
-	print('Aturada del sistema per Signal:', signalNumber, '\n')
-	return
+	print(ctime(), "-->", 'Aturada del sistema per Signal:', signalNumber, '\n')
+	f.flush()
+	f.close()
+	sys.exit(0)
 
 def init():
 
@@ -37,6 +39,8 @@ def init():
 	for i in range(SYS_SIZE):
 		buttons[i].when_pressed = button_pressed
 		buttons[i].when_released = button_released
+
+	f.flush()
 
 def open_valve(n):
 	
