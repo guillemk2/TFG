@@ -17,7 +17,7 @@ from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc, f
 from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Funcions auxiliars
-from aux import init, receiveSignal, poll_soil_sensors, poll_temp_sensor, post, set_valves
+from aux import init, poll_soil_sensors, poll_temp_sensor, post, set_valves
 
 def main_loop():
 
@@ -33,7 +33,6 @@ def main_loop():
 
 if __name__ == "__main__":
 	try:
-		signal(signal.SIGTERM, receiveSignal)
 
 		init()
 		main_loop()

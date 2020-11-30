@@ -19,8 +19,13 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 
 # Definició de funcions.
 		
+def receiveSignal(signalNumber, frame):
+	print('Aturada del sistema per Signal:', signalNumber, '\n')
+	return
 
 def init():
+
+	signal(signal.SIGTERM, receiveSignal)
 
 	print(ctime(), "-->", "Posada en marxa del sistema. Esperem 30s al servidor.\n", file=f)
 	sleep(30)
