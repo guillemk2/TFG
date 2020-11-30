@@ -2,7 +2,7 @@
 
 import sys
 from time import time, ctime, sleep
-from signal import pause, signal
+from signal import pause, signal, SIGTERM
 import threading
 import requests
 import json
@@ -25,7 +25,7 @@ def receiveSignal(signalNumber, frame):
 
 def init():
 
-	signal(signal.SIGTERM, receiveSignal)
+	signal(SIGTERM, receiveSignal)
 
 	print(ctime(), "-->", "Posada en marxa del sistema. Esperem 30s al servidor.\n", file=f)
 	sleep(30)

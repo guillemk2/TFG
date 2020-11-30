@@ -2,7 +2,7 @@
 
 import sys
 from time import time, ctime, sleep
-from signal import pause, signal
+from signal import pause, signal, SIGTERM
 import threading
 import requests
 import json
