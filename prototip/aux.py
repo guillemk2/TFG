@@ -31,8 +31,7 @@ def init():
 
 	print(ctime(), "-->", "Posada en marxa del sistema. Esperem 30s al servidor.\n", file=f)
 	f.flush()
-	sleep(30)
-	
+		
 	# Tanquem les dues electrovàlvules
 	set_valves(False)
 
@@ -40,6 +39,8 @@ def init():
 	for i in range(SYS_SIZE):
 		buttons[i].when_pressed = button_pressed
 		buttons[i].when_released = button_released
+
+	sleep(30)
 
 def open_valve(n):
 	
