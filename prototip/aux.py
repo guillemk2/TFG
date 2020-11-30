@@ -2,7 +2,7 @@
 
 import sys
 from time import time, ctime, sleep
-from signal import pause, signal, SIGTERM, SIGINT
+from signal import pause, signal, SIGTERM, SIGINT, Signals
 import threading
 import requests
 import json
@@ -24,7 +24,7 @@ def receiveSignal(signalNumber, frame):
 	set_valves(False)
 	post()
 
-	print(ctime(), "-->", 'Aturada del sistema per Signal:', signalNumber.name, '\n', file=f)
+	print(ctime(), "-->", 'Aturada del sistema per Signal:', Signals(signalNumber).name, '\n', file=f)
 	f.flush()
 	f.close()
 
