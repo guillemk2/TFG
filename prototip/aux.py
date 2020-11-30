@@ -2,7 +2,7 @@
 
 import sys
 from time import time, ctime, sleep
-from signal import pause, signal, SIGTERM
+from signal import pause, signal, SIGTERM, SIGINT
 import threading
 import requests
 import json
@@ -20,13 +20,19 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 # Definició de funcions.
 		
 def receiveSignal(signalNumber, frame):
-	print(ctime(), "-->", 'Aturada del sistema per Signal:', signalNumber, '\n', file=f)
+
+	set_valves(False)
+	post()
+
+	print(ctime(), "-->", 'Aturada del sistema per Signal:', signalNumber.name, '\n', file=f)
 	f.flush()
 	f.close()
+
 	sys.exit(0)
 
 def init():
 
+	signal(SIGINT, receiveSignal)
 	signal(SIGTERM, receiveSignal)
 
 	print(ctime(), "-->", "Posada en marxa del sistema. Esperem 30s al servidor.\n", file=f)

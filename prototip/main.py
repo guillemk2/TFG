@@ -32,16 +32,6 @@ def main_loop():
 		sleep(POLL_FREQUENCY)
 
 if __name__ == "__main__":
-	try:
 
-		init()
-		main_loop()
-
-	except KeyboardInterrupt:
-
-		# Tanquem les dues electrovàlvules
-		set_valves(False)
-		print(ctime(), "-->", "Aturada del sistema per interrupció de teclat.\n", file=f)
-		f.flush()
-		f.close()
-		sys.exit(0)
+	init()
+	main_loop()
