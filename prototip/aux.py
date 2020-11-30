@@ -70,17 +70,24 @@ def button_released(btn):
 
 def poll_soil_sensors():
 
+	threads = []
 	for i in range(SYS_SIZE):
 		soil_sensors_vcc[i].on()
 		moisture[i] = soil_sensors[i].value
 
 		if (moisture[i] == DRY):
-			threading.Thread(target=irrigate, args=(i,)).start()
+			t = threading.Thread(target=irrigate, args=(i,))
+			threads.append(t)
+			t.start()
 
 	sleep(POLL_TIME)
 			
 	for i in range(SYS_SIZE):
 		soil_sensors_vcc[i].off()
+
+	# Esperem a que tots els testos estiguin regats per a continuar amb l'execució.
+	for t in threads:
+    t.join()
 
 def poll_temp_sensor():
 	global temperature
@@ -95,7 +102,6 @@ def irrigate(n):
 	open_valve(n)
 	sleep(IRRIGATION_TIME)
 	close_valve(n)
-	sys.exit(0) # Matem el thread
 
 def post():
 
