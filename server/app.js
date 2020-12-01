@@ -29,6 +29,15 @@ app.use('/', require('./routes/routes'));
 app.set('httpPort', process.env.HTTPPORT || 8080);
 
 //Listen
-app.listen(app.get('httpPort'), () => {
+server = app.listen(app.get('httpPort'), () => {
     console.log(`HTTP server on port ${app.get('httpPort')}`);
 });
+
+// Handle signals
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
+
+// Do graceful shutdown
+function shutdown() {
+  setTimeout(server.close, 5000);
+}
