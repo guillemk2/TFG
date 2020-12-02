@@ -32,5 +32,9 @@ def main_loop():
 
 if __name__ == "__main__":
 
-	init()
-	main_loop()
+	if (len(sys.argv) == 2):
+		print("Argument yeey")
+
+	else:
+		init()
+		main_loop()
