@@ -33,8 +33,4 @@ def main_loop():
 if __name__ == "__main__":
 
 	init()
-
-	if (len(sys.argv) >= 2):
-		calibrate()
-		
 	main_loop()

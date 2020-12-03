@@ -48,6 +48,9 @@ def init():
 		buttons[i].when_pressed = button_pressed
 		buttons[i].when_released = button_released
 
+	if (len(sys.argv) >= 2):
+		calibrate()
+
 	sleep(30)
 
 def calibrate():
