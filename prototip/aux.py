@@ -22,6 +22,8 @@ from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
 def receiveSignal(signalNumber, frame):
 
 	set_valves(False)
+	for i in range(SYS_SIZE):
+		soil_sensors_vcc[i].off()
 	post()
 
 	print(ctime(), "-->", 'Aturada del sistema per Signal:', Signals(signalNumber).name, '\n', file=f)
@@ -47,6 +49,11 @@ def init():
 		buttons[i].when_released = button_released
 
 	sleep(30)
+
+def calibrate():
+	for i in range(SYS_SIZE):
+		soil_sensors_vcc[i].on()
+	pause()
 
 def open_valve(n):
 	
