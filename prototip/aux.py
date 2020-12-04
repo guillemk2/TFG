@@ -99,16 +99,16 @@ def poll_soil_sensors():
 	threads = []
 	for i in range(SYS_SIZE):
 		soil_sensors_vcc[i].on()
+
+	sleep(POLL_TIME)	
+			
+	for i in range(SYS_SIZE):
 		moisture[i] = soil_sensors[i].value
 
 		if (moisture[i] == DRY):
 			t = threading.Thread(target=irrigate, args=(i,))
 			threads.append(t)
 			t.start()
-
-	sleep(POLL_TIME)
-			
-	for i in range(SYS_SIZE):
 		soil_sensors_vcc[i].off()
 
 	# Esperem a que tots els testos estiguin regats per a continuar amb l'execució.
