@@ -17,7 +17,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 	
 	try {
+		// Prometheus
+		temp.set(req.body.temperature); // Set to 10
 
+		// MongoDB
 		const post = new Post({
 			date: req.body.date,
 			temperature: req.body.temperature,
