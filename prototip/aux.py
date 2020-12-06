@@ -37,7 +37,7 @@ def init():
 	signal(SIGINT, receiveSignal)
 	signal(SIGTERM, receiveSignal)
 
-	print(ctime(), "-->", "Posada en marxa del sistema. Esperem 30s al servidor.\n", file=f)
+	print(ctime(), "-->", "Posada en marxa del sistema.\n", file=f)
 	f.flush()
 		
 	# Tanquem les dues electrovàlvules
@@ -50,8 +50,6 @@ def init():
 
 	if (len(sys.argv) >= 2):
 		calibrate()
-
-	sleep(30)
 
 def calibrate():
 	for i in range(SYS_SIZE):
