@@ -5,6 +5,7 @@ const app = express();
 
 // Prometheus metrics
 const client = require('prom-client');
+const collectDefaultMetrics = client.collectDefaultMetrics;
 const temp = new client.Gauge({ name: 'temp', help: 'Temperatura ambient' });
 
 

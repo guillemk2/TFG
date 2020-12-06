@@ -37,4 +37,17 @@ router.post('/', async (req, res) => {
 
 });
 
+// Prometheus metrics endpoint
+router.get('/metrics', async(req, res) => {
+
+	try {
+
+		res.set('Content-Type', client.register.contentType);
+		res.end(client.register.metrics());
+
+	} catch (err) {
+		res.status(500).json({ "error": err.message });
+	}
+});
+
 module.exports = router;
