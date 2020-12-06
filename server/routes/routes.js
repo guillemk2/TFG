@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
 
-router.get('/', async (req, res) => {
+// Prometheus metrics
+const client = require('prom-client');
+const collectDefaultMetrics = client.collectDefaultMetrics;
+const temp = new client.Gauge({ name: 'temp', help: 'Temperatura ambient' });
+
+router.get('/', (req, res) => {
 	
 	try {
 		
@@ -38,7 +43,7 @@ router.post('/', async (req, res) => {
 });
 
 // Prometheus metrics endpoint
-router.get('/metrics', async(req, res) => {
+router.get('/metrics', (req, res) => {
 
 	try {
 

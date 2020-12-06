@@ -3,12 +3,6 @@ const mongoose = require('mongoose');
 require("dotenv").config({ path: '/home/pi/Documents/.env' }); 
 const app = express();
 
-// Prometheus metrics
-const client = require('prom-client');
-const collectDefaultMetrics = client.collectDefaultMetrics;
-const temp = new client.Gauge({ name: 'temp', help: 'Temperatura ambient' });
-
-
 // DB connection
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
