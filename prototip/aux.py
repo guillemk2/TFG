@@ -105,8 +105,8 @@ def poll_soil_sensors():
 		moisture[i] = soil_sensors[i].value
 
 		value = analog_moisture_sensors.read(channel = 5+i*2)
-		print("Applied voltage: %.2f" % (value / 1023.0 * 3.3) )
-		print(value)
+		print(ctime(), "Applied voltage: %.2f" % (value / 1023.0 * 3.3) , file=f)
+		print(ctime(), value, file=f)
 
 		if (moisture[i] == DRY):
 			t = threading.Thread(target=irrigate, args=(i,))
