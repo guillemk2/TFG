@@ -26,7 +26,7 @@ def main_loop():
 
 		poll_temp_sensor()
 
-		post()
+		#post()
 		
 		sleep(POLL_FREQUENCY)
 

@@ -9,13 +9,14 @@ import json
 import gpiozero
 import adafruit_dht
 from numpyencoder import NumpyEncoder
+from MCP3008 import MCP3008
 
 # Constants
 from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, headers
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc, f
 # Variables globals
-from cfg import temperature, moisture, irrigation, valves_t0, valves_t1
+from cfg import temperature, moisture, irrigation, valves_t0, valves_t1, analog_moisture_sensors
 
 # Definició de funcions.
 		
@@ -102,6 +103,10 @@ def poll_soil_sensors():
 			
 	for i in range(SYS_SIZE):
 		moisture[i] = soil_sensors[i].value
+
+		value = analog_moisture_sensors.read(channel = 5+i*2)
+		print("Applied voltage: %.2f" % (value / 1023.0 * 3.3) )
+		print(value)
 
 		if (moisture[i] == DRY):
 			t = threading.Thread(target=irrigate, args=(i,))
