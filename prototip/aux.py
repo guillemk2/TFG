@@ -12,7 +12,7 @@ from numpyencoder import NumpyEncoder
 from MCP3008 import MCP3008
 
 # Constants
-from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, headers
+from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, headers, DRY_VALUE, WET_VALUE
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc, f
 # Variables globals
@@ -93,6 +93,14 @@ def button_released(btn):
 		if (buttons[i] == btn):
 			close_valve(i)
 
+def vaulue_to_percent(v):
+	if (v < WET_VALUE):
+		v = WET_VALUE
+	if (v > DRY_VALUE):
+		v = DRY_VALUE
+
+	return (1-(v-DRY_VALUE)/(WET_VALUE-DRY_VALUE))*100
+
 def poll_soil_sensors():
 
 	threads = []
@@ -106,7 +114,8 @@ def poll_soil_sensors():
 
 		value = analog_moisture_sensors.read(channel = 5+i*2)
 		#print(ctime(), "Applied voltage: %.2f" % (value / 1023.0 * 3.3) , file=f)
-		print(ctime(), value, file=f)
+		percent = value_to_percent(value)
+		print(ctime(), value, percent, file=f)
 
 		if (moisture[i] == DRY):
 			t = threading.Thread(target=irrigate, args=(i,))
