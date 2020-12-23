@@ -105,7 +105,7 @@ def poll_soil_sensors():
 		moisture[i] = soil_sensors[i].value
 
 		value = analog_moisture_sensors.read(channel = 5+i*2)
-		print(ctime(), "Applied voltage: %.2f" % (value / 1023.0 * 3.3) , file=f)
+		#print(ctime(), "Applied voltage: %.2f" % (value / 1023.0 * 3.3) , file=f)
 		print(ctime(), value, file=f)
 
 		if (moisture[i] == DRY):
@@ -124,7 +124,8 @@ def poll_temp_sensor():
 	global temperature
 	try:
 		temperature = temp_sensor.temperature
-		print(ctime(), "-->", "Temperatura:", temperature, "ºC", file=f)
+		#print(ctime(), "-->", "Temperatura:", temperature, "ºC", file=f)
+		print(ctime(), "\n", file=f)
 	except RuntimeError:
 		print(ctime(), "-->", "RuntimeError, try again ...", file=f)
 		poll_temp_sensor()
