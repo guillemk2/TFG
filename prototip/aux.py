@@ -99,7 +99,7 @@ def value_to_percent(v):
 	if (v > DRY_VALUE):
 		v = DRY_VALUE
 
-	return (1-(v-DRY_VALUE)/(WET_VALUE-DRY_VALUE))*100
+	return (1-(v-WET_VALUE)/(DRY_VALUE-WET_VALUE))*100
 
 def poll_soil_sensors():
 
