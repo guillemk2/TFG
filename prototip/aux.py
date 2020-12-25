@@ -112,7 +112,7 @@ def poll_soil_sensors():
 	for i in range(SYS_SIZE):
 		moisture[i] = value_to_percent(analog_moisture_sensors.read(channel = 5+i*2))
 
-		print(ctime(), "-->", "Humitat", i, ":", moisture[i], "%" file=f)
+		print(ctime(), "-->", "Humitat", i, ":", moisture[i], "%", file=f)
 
 		if (moisture[i] < MOISTURE_THRESHOLD):
 			t = threading.Thread(target=irrigate, args=(i,))
