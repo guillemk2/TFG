@@ -13,7 +13,7 @@ const PostSchema = Schema({
 	},
 	plants: [{
 		moisture: {
-			type: Boolean, 
+			type: Number, 
 			required: true
 		},
 		irrigation: {

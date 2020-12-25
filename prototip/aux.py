@@ -12,7 +12,7 @@ from numpyencoder import NumpyEncoder
 from MCP3008 import MCP3008
 
 # Constants
-from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, headers, DRY_VALUE, WET_VALUE
+from cfg import SYS_SIZE, POLL_FREQUENCY, POLL_TIME, IRRIGATION_TIME, BOUNCE_TIME, FLOW, DRY, WET, url, headers, DRY_VALUE, WET_VALUE, MOISTURE_THRESHOLD
 # Objectes
 from cfg import temp_sensor,relays, buttons, soil_sensors, soil_sensors_vcc, f
 # Variables globals
@@ -99,7 +99,7 @@ def value_to_percent(v):
 	if (v > DRY_VALUE):
 		v = DRY_VALUE
 
-	return (1-(v-WET_VALUE)/(DRY_VALUE-WET_VALUE))*100
+	return round((1-(v-WET_VALUE)/(DRY_VALUE-WET_VALUE))*100, 0)
 
 def poll_soil_sensors():
 
@@ -110,14 +110,11 @@ def poll_soil_sensors():
 	sleep(POLL_TIME)	
 			
 	for i in range(SYS_SIZE):
-		moisture[i] = soil_sensors[i].value
+		moisture[i] = value_to_percent(analog_moisture_sensors.read(channel = 5+i*2))
 
-		value = analog_moisture_sensors.read(channel = 5+i*2)
-		#print(ctime(), "Applied voltage: %.2f" % (value / 1023.0 * 3.3) , file=f)
-		percent = value_to_percent(value)
-		print(ctime(), value, percent, file=f)
+		print(ctime(), moisture[i], file=f)
 
-		if (moisture[i] == DRY):
+		if (moisture[i] < MOISTURE_THRESHOLD):
 			t = threading.Thread(target=irrigate, args=(i,))
 			threads.append(t)
 			t.start()
