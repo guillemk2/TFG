@@ -93,7 +93,7 @@ def button_released(btn):
 		if (buttons[i] == btn):
 			close_valve(i)
 
-def vaulue_to_percent(v):
+def value_to_percent(v):
 	if (v < WET_VALUE):
 		v = WET_VALUE
 	if (v > DRY_VALUE):
