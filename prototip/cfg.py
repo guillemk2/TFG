@@ -12,14 +12,13 @@ from MCP3008 import MCP3008
 SYS_SIZE = 2
 
 # Duració dels events (en segons)
-POLL_FREQUENCY = 3	# Freqüència de lectura dels sensors (30 minuts)
+POLL_FREQUENCY = 10		# Freqüència de lectura dels sensors (30 minuts)
 POLL_TIME = 0.75		# Duració de la lectura dels sensors
 IRRIGATION_TIME = 2		# Temps de reg
 BOUNCE_TIME = 0.25		# Temps de rebot dels botons (mínim temps de reg)
 FLOW = 1.65				# Cabal de les vàlvules en ml/s
 DRY_VALUE = 980			# Valor analògic per a un entorn d'humitat 0%
 WET_VALUE = 230			# Valor analògic per a un entorn d'humitat 100%
-MOISTURE_THRESHOLD = 50	# Llindar d'humitat per aplicar el reg (%)
 
 # Valors d'humitat
 DRY = 0  # Sec

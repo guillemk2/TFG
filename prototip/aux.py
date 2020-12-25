@@ -112,7 +112,7 @@ def poll_soil_sensors():
 	for i in range(SYS_SIZE):
 		moisture[i] = value_to_percent(analog_moisture_sensors.read(channel = 5+i*2))
 
-		print(ctime(), moisture[i], file=f)
+		print(ctime(), "-->", "Humitat", i, ":", moisture[i], "%" file=f)
 
 		if (moisture[i] < MOISTURE_THRESHOLD):
 			t = threading.Thread(target=irrigate, args=(i,))
@@ -130,10 +130,9 @@ def poll_temp_sensor():
 	global temperature
 	try:
 		temperature = temp_sensor.temperature
-		#print(ctime(), "-->", "Temperatura:", temperature, "ºC", file=f)
-		print(ctime(), "\n", file=f)
+		print(ctime(), "-->", "Temperatura:", temperature, "ºC", file=f)
 	except RuntimeError:
-		print(ctime(), "-->", "RuntimeError, try again ...", file=f)
+		print(ctime(), "-->", "RuntimeError on temperature sensor read, try again ...", file=f)
 		poll_temp_sensor()
 	f.flush()
 
