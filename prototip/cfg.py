@@ -19,7 +19,7 @@ BOUNCE_TIME = 0.25		# Temps de rebot dels botons (mínim temps de reg)
 FLOW = 1.65				# Cabal de les vàlvules en ml/s
 DRY_VALUE = 980			# Valor analògic per a un entorn d'humitat 0%
 WET_VALUE = 230			# Valor analògic per a un entorn d'humitat 100%
-MOISTURE_THRESHOLD = 50	# Llindar d'humitat per aplicar el reg (%)
+MOISTURE_THRESHOLD = 20	# Llindar d'humitat per aplicar el reg (%)
 
 # Valors d'humitat
 DRY = 0  # Sec
