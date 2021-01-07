@@ -1,10 +1,7 @@
 import sys
-from time import time, ctime, sleep
-import threading
-import requests
-import json
+from time import time, sleep
 import gpiozero
-import adafruit_dht
+from MCP3008 import MCP3008
 
 DRY_VALUE = 980			# Valor analògic per a un entorn d'humitat 0%
 WET_VALUE = 230			# Valor analògic per a un entorn d'humitat 100%
@@ -22,11 +19,9 @@ def value_to_percent(v):
 if __name__ == "__main__":
 
 	sensor_vcc = gpiozero.OutputDevice("BOARD29", active_high=True, initial_value=False)
-
 	sensor_vcc.on()
 
 	start_time = time()
-
 	print("Start:", start_time)
 
 	while True:
