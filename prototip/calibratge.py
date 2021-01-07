@@ -26,6 +26,6 @@ if __name__ == "__main__":
 
 	while True:
 
-		print("+", round(time()-start_time, 5), "ms", value_to_percent(analog_moisture_sensors.read(channel = 5)), "%")
-		sleep(0.25)
+		print("+", round(time()-start_time, 5), "s", value_to_percent(analog_moisture_sensors.read(channel = 5)), "%")
+		sleep(0.5)
 
